@@ -1,5 +1,5 @@
 # hamcrest-jdk8-extras
-Matchers for JDK 8 Optional
+An extension to ![Java Hamcrest](https://github.com/hamcrest/JavaHamcrest) which provides matchers for *JDK 8* Optional
 
 It provides matchers such as:
 
