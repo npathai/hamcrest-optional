@@ -1,4 +1,6 @@
 # hamcrest-jdk8-extras
+[![Travis CI build](https://travis-ci.org/npathai/hamcrest-jdk8-extras.svg?branch=master)](https://travis-ci.org/npathai/hamcrest-jdk8-extras)
+
 An extension to [Java Hamcrest](https://github.com/hamcrest/JavaHamcrest) which provides matchers for *JDK 8* Optional
 
 It provides matchers such as:
