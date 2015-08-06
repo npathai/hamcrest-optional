@@ -73,7 +73,7 @@ public abstract class OptionalMatcher<T> extends TypeSafeMatcher<Optional<T>> {
 	private static class PresentAndMatcher<T> extends OptionalMatcher<T> {
 		private PresenceMatcher<T> presenceMatcher = new PresenceMatcher<>();
 		private Matcher<? super T> matcher;
-
+		
 		public PresentAndMatcher(Matcher<? super T> matcher) {
 			this.matcher = matcher;
 		}
@@ -92,15 +92,12 @@ public abstract class OptionalMatcher<T> extends TypeSafeMatcher<Optional<T>> {
 		}
 		
 		@Override
-		//FIXME presently evaluating matcher twice need to find solution to this
 		protected void describeMismatchSafely(Optional<T> item, Description mismatchDescription) {
 			if (!presenceMatcher.matchesSafely(item)) {
 				mismatchDescription.appendText("was <Empty>");
 			} else {
-				if (!matcher.matches(item.get())) {
-					mismatchDescription.appendText("was <Present> and ");
-					matcher.describeMismatch(item.get(), mismatchDescription);
-				}
+				mismatchDescription.appendText("was <Present> and ");
+				matcher.describeMismatch(item.get(), mismatchDescription);
 			}
 		}
 	}
