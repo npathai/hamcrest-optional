@@ -18,7 +18,7 @@ public abstract class OptionalMatcher<T> extends TypeSafeMatcher<Optional<T>> {
 	 * @return a matcher which matches if Optional is present 
 	 */
 	public static <T> Matcher<Optional<T>> isPresent() {
-		return new PresenceMatcher<T>();
+		return new PresenceMatcher<>();
 	}
 
 	private static class PresenceMatcher<T> extends OptionalMatcher<T> {
@@ -42,7 +42,7 @@ public abstract class OptionalMatcher<T> extends TypeSafeMatcher<Optional<T>> {
 	 * @return a matcher which matches if Optional is empty
 	 */
 	public static <T> Matcher<Optional<T>> isEmpty() {
-		return new EmptyMatcher<T>();
+		return new EmptyMatcher<>();
 	}
 	
 	private static class EmptyMatcher<T> extends OptionalMatcher<T> {
