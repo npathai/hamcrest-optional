@@ -12,7 +12,7 @@ import org.hamcrest.TypeSafeMatcher;
  * @author npathai
  *
  */
-public abstract class OptionalMatcher<T> extends TypeSafeMatcher<Optional<T>> {
+public class OptionalMatcher {
 
 	/**
 	 * @return a matcher which matches if Optional is present 
@@ -44,7 +44,7 @@ public abstract class OptionalMatcher<T> extends TypeSafeMatcher<Optional<T>> {
 	public static Matcher<Optional<?>> isEmpty() {
 		return new EmptyMatcher();
 	}
-	
+
 	private static class EmptyMatcher extends TypeSafeMatcher<Optional<?>> {
 
 		public void describeTo(Description description) {
@@ -69,8 +69,8 @@ public abstract class OptionalMatcher<T> extends TypeSafeMatcher<Optional<T>> {
 	public static <T> Matcher<Optional<T>> isPresentAnd(Matcher<? super T> matcher) {
 		return new PresentAndMatcher<>(matcher);
 	}
-	
-	private static class PresentAndMatcher<T> extends OptionalMatcher<T> {
+
+	private static class PresentAndMatcher<T> extends TypeSafeMatcher<Optional<T>> {
 		private PresenceMatcher presenceMatcher = new PresenceMatcher();
 		private Matcher<? super T> matcher;
 		
@@ -100,5 +100,9 @@ public abstract class OptionalMatcher<T> extends TypeSafeMatcher<Optional<T>> {
 				matcher.describeMismatch(item.get(), mismatchDescription);
 			}
 		}
+	}
+
+	//This is an utility class that must not be instantiated.
+	private OptionalMatcher() {
 	}
 }
