@@ -17,23 +17,23 @@ public abstract class OptionalMatcher<T> extends TypeSafeMatcher<Optional<T>> {
 	/**
 	 * @return a matcher which matches if Optional is present 
 	 */
-	public static <T> Matcher<Optional<T>> isPresent() {
-		return new PresenceMatcher<>();
+	public static Matcher<Optional<?>> isPresent() {
+		return new PresenceMatcher();
 	}
 
-	private static class PresenceMatcher<T> extends OptionalMatcher<T> {
+	private static class PresenceMatcher extends TypeSafeMatcher<Optional<?>> {
 		
 		public void describeTo(Description description) {
 			description.appendText("<Present>");
 		}
 
 		@Override
-		protected boolean matchesSafely(Optional<T> item) {
+		protected boolean matchesSafely(Optional<?> item) {
 			return item.isPresent();
 		}
 		
 		@Override
-		protected void describeMismatchSafely(Optional<T> item, Description mismatchDescription) {
+		protected void describeMismatchSafely(Optional<?> item, Description mismatchDescription) {
 			mismatchDescription.appendText("was <Empty>");
 		}
 	}
@@ -41,23 +41,23 @@ public abstract class OptionalMatcher<T> extends TypeSafeMatcher<Optional<T>> {
 	/**
 	 * @return a matcher which matches if Optional is empty
 	 */
-	public static <T> Matcher<Optional<T>> isEmpty() {
-		return new EmptyMatcher<>();
+	public static Matcher<Optional<?>> isEmpty() {
+		return new EmptyMatcher();
 	}
 	
-	private static class EmptyMatcher<T> extends OptionalMatcher<T> {
+	private static class EmptyMatcher extends TypeSafeMatcher<Optional<?>> {
 
 		public void describeTo(Description description) {
 			description.appendText("<Empty>");
 		}
 
 		@Override
-		protected boolean matchesSafely(Optional<T> item) {
+		protected boolean matchesSafely(Optional<?> item) {
 			return !item.isPresent();
 		}
 		
 		@Override
-		protected void describeMismatchSafely(Optional<T> item, Description mismatchDescription) {
+		protected void describeMismatchSafely(Optional<?> item, Description mismatchDescription) {
 			mismatchDescription.appendText("was <Present> with value " + item.get());
 		}
 	}
@@ -71,7 +71,7 @@ public abstract class OptionalMatcher<T> extends TypeSafeMatcher<Optional<T>> {
 	}
 	
 	private static class PresentAndMatcher<T> extends OptionalMatcher<T> {
-		private PresenceMatcher<T> presenceMatcher = new PresenceMatcher<>();
+		private PresenceMatcher presenceMatcher = new PresenceMatcher();
 		private Matcher<? super T> matcher;
 		
 		public PresentAndMatcher(Matcher<? super T> matcher) {
