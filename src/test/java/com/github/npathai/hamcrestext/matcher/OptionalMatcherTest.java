@@ -56,27 +56,27 @@ public class OptionalMatcherTest {
 	}
 	
 	@Test
-	public void testIsPresentAnd_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
+	public void testHasValue_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
 		exception.expect(AssertionError.class);
 		exception.expectMessage("was <Empty>");
 		
 		Optional<String> hello = Optional.empty();
-		assertThat(hello, isPresentAnd(startsWith("a")));
+		assertThat(hello, hasValue(startsWith("a")));
 	}
 	
 	@Test
-	public void testIsPresentAnd_ShouldReturnAMatcher_WhichSucceedsIfOptionalIsPresent_AndPassedMatcher_Succeeds() {
+	public void testHasValue_ShouldReturnAMatcher_WhichSucceedsIfOptionalIsPresent_AndPassedMatcher_Succeeds() {
 		Optional<String> hello = Optional.of("hello");
-		assertThat(hello, isPresentAnd(allOf(startsWith("h"), endsWith("o"))));
+		assertThat(hello, hasValue(allOf(startsWith("h"), endsWith("o"))));
 	}
 	
 	@Test
-	public void testIsPresentAnd_ShouldReturnAMatcher_WhichFailsIfOptionalIsPresent_ButPassedMatcher_Fails() {
+	public void testHasValue_ShouldReturnAMatcher_WhichFailsIfOptionalIsPresent_ButPassedMatcher_Fails() {
 		exception.expect(AssertionError.class);
 		exception.expectMessage("was <Present> and");
 		exception.expectMessage("was \"hello\"");
 		
 		Optional<String> hello = Optional.of("hello");
-		assertThat(hello, isPresentAnd(startsWith("a")));
+		assertThat(hello, hasValue(startsWith("a")));
 	}
 }

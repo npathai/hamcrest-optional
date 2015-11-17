@@ -9,7 +9,7 @@ It provides matchers such as:
 
  - `isEmpty()` - Matches if optional is empty
 
- - `isPresentAnd(Matcher<T> m)` - Matches if optional is present and matches provided matcher.
+ - `hasValue(Matcher<T> m)` - Matches if optional contains a value that satisfies the specified matcher.
 
 ##Usage
 ###`isPresent()`
@@ -27,11 +27,11 @@ Optional<String> optionalRef = someMethodReturningOptional();
 assertThat(optionalRef, isEmpty());
 ```
 
-###`isPresentAnd(Matcher<? super T> m)`
+###`hasValue(Matcher<? super T> m)`
 
 ```java
 Optional<String> optionalRef = someMethodReturningOptional();
-assertThat(optionalRef, isPresentAnd(startsWith("a"));
+assertThat(optionalRef, hasValue(startsWith("a"));
 ```
 
 ## Development Guide

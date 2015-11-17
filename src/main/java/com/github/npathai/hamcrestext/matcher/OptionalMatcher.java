@@ -63,18 +63,27 @@ public class OptionalMatcher {
 	}
 
 	/**
-	 * @return a matcher which matches if Optional is present and also matches 
-	 * provided {@code matcher}
+	 * Creates a matcher that matches when the examined {@code Optional}
+	 * contains a value that satisfies the specified matcher.
+	 * <pre>
+	 *     Optional&lt;String&gt; optionalObject = Optional.of("dummy value");
+	 *     assertThat(optionalObject, hasValue(startsWith("dummy")));
+	 * </pre>
+	 *
+	 * @param matcher a matcher for the value of the examined {@code Optional}.
+	 * @param <T> the class of the value.
+	 * @return  a matcher that matches when the examined {@code Optional}
+	 * contains a value that satisfies the specified matcher.
 	 */
-	public static <T> Matcher<Optional<T>> isPresentAnd(Matcher<? super T> matcher) {
-		return new PresentAndMatcher<>(matcher);
+	public static <T> Matcher<Optional<T>> hasValue(Matcher<? super T> matcher) {
+		return new HasValue<>(matcher);
 	}
 
-	private static class PresentAndMatcher<T> extends TypeSafeMatcher<Optional<T>> {
+	private static class HasValue<T> extends TypeSafeMatcher<Optional<T>> {
 		private PresenceMatcher presenceMatcher = new PresenceMatcher();
 		private Matcher<? super T> matcher;
 		
-		public PresentAndMatcher(Matcher<? super T> matcher) {
+		public HasValue(Matcher<? super T> matcher) {
 			this.matcher = matcher;
 		}
 		
