@@ -1,6 +1,7 @@
 package com.github.npathai.hamcrestext.matcher;
 
 import static com.github.npathai.hamcrestext.matcher.OptionalMatchers.*;
+import static java.lang.String.format;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.startsWith;
@@ -20,12 +21,8 @@ public class OptionalMatchersTest {
 	
 	@Test
 	public void testIsPresent_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
-		exception.expect(AssertionError.class);
-		exception.expectMessage("Expected: <Present>");
-		exception.expectMessage("was <Empty>");
-		
 		Optional<Object> myOptionalRef = Optional.empty();
-		
+		expectFailure(format("Expected: <Present>%n     but: was <Empty>"));
 		assertThat(myOptionalRef, isPresent());
 	}
 	
@@ -45,21 +42,15 @@ public class OptionalMatchersTest {
 	
 	@Test
 	public void testIsEmpty_ShouldReturnAMatcher_WhichFailsIfOptionalIsPresent() {
-		exception.expect(AssertionError.class);
-		exception.expectMessage("Expected: <Empty>");
-		exception.expectMessage("was <Present> with value " + ANY_VALUE);
-		
 		Optional<Object> myOptionalRef = Optional.of(ANY_VALUE);
-		
+		expectFailure(format("Expected: <Empty>%n     but: was <Present> with value " + ANY_VALUE));
 		assertThat("An optional with some value should not be empty", myOptionalRef, isEmpty());
 	}
 
 	@Test
 	public void testHasValue_Object_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
-		exception.expect(AssertionError.class);
-		exception.expectMessage("was <Empty>");
-
 		Optional<String> optional = Optional.empty();
+		expectFailure("was <Empty>");
 		assertThat(optional, hasValue("dummy value"));
 	}
 
@@ -71,20 +62,15 @@ public class OptionalMatchersTest {
 
 	@Test
 	public void testHasValue_Object_ShouldReturnAMatcher_WhichFailsIfOptionalContainsValueNotEqualToOperand() {
-		exception.expect(AssertionError.class);
-		exception.expectMessage("was <Present> and");
-		exception.expectMessage("was \"dummy value\"");
-
 		Optional<String> optional = Optional.of("dummy value");
+		expectFailure("was <Present> and was \"dummy value\"");
 		assertThat(optional, hasValue("another value"));
 	}
 	
 	@Test
 	public void testHasValue_Matcher_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
-		exception.expect(AssertionError.class);
-		exception.expectMessage("was <Empty>");
-		
 		Optional<String> hello = Optional.empty();
+		expectFailure("was <Empty>");
 		assertThat(hello, hasValue(startsWith("a")));
 	}
 	
@@ -96,11 +82,13 @@ public class OptionalMatchersTest {
 	
 	@Test
 	public void testHasValue_Matcher_ShouldReturnAMatcher_WhichFailsIfOptionalIsPresent_ButPassedMatcher_Fails() {
-		exception.expect(AssertionError.class);
-		exception.expectMessage("was <Present> and");
-		exception.expectMessage("was \"hello\"");
-		
 		Optional<String> hello = Optional.of("hello");
+		expectFailure("was <Present> and was \"hello\"");
 		assertThat(hello, hasValue(startsWith("a")));
+	}
+
+	private void expectFailure(String message) {
+		exception.expect(AssertionError.class);
+		exception.expectMessage(message);
 	}
 }
