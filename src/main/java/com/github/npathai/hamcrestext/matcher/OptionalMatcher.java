@@ -15,7 +15,15 @@ import org.hamcrest.TypeSafeMatcher;
 public class OptionalMatcher {
 
 	/**
-	 * @return a matcher which matches if Optional is present 
+	 * Creates a matcher that matches when the examined {@code Optional}
+	 * contains a value.
+	 * <pre>
+	 *     Optional&lt;String&gt; optionalObject = Optional.of("dummy value");
+	 *     assertThat(optionalObject, isPresent());
+	 * </pre>
+	 *
+	 * @return  a matcher that matches when the examined {@code Optional}
+	 * contains a value.
 	 */
 	public static Matcher<Optional<?>> isPresent() {
 		return new PresenceMatcher();
@@ -39,7 +47,15 @@ public class OptionalMatcher {
 	}
 
 	/**
-	 * @return a matcher which matches if Optional is empty
+	 * Creates a matcher that matches when the examined {@code Optional}
+	 * contains no value.
+	 * <pre>
+	 *     Optional&lt;String&gt; optionalObject = Optional.empty();
+	 *     assertThat(optionalObject, isEmpty());
+	 * </pre>
+	 *
+	 * @return  a matcher that matches when the examined {@code Optional}
+	 * contains no value.
 	 */
 	public static Matcher<Optional<?>> isEmpty() {
 		return new EmptyMatcher();
