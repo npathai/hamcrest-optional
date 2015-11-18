@@ -54,9 +54,34 @@ public class OptionalMatcherTest {
 		
 		assertThat("An optional with some value should not be empty", myOptionalRef, isEmpty());
 	}
+
+	@Test
+	public void testHasValue_Object_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
+		exception.expect(AssertionError.class);
+		exception.expectMessage("was <Empty>");
+
+		Optional<String> optional = Optional.empty();
+		assertThat(optional, hasValue("dummy value"));
+	}
+
+	@Test
+	public void testHasValue_Object_ShouldReturnAMatcher_WhichSucceedsIfOptionalContainsValueEqualToOperand() {
+		Optional<String> optional = Optional.of("dummy value");
+		assertThat(optional, hasValue("dummy value"));
+	}
+
+	@Test
+	public void testHasValue_Object_ShouldReturnAMatcher_WhichFailsIfOptionalContainsValueNotEqualToOperand() {
+		exception.expect(AssertionError.class);
+		exception.expectMessage("was <Present> and");
+		exception.expectMessage("was \"dummy value\"");
+
+		Optional<String> optional = Optional.of("dummy value");
+		assertThat(optional, hasValue("another value"));
+	}
 	
 	@Test
-	public void testHasValue_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
+	public void testHasValue_Matcher_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
 		exception.expect(AssertionError.class);
 		exception.expectMessage("was <Empty>");
 		
@@ -65,13 +90,13 @@ public class OptionalMatcherTest {
 	}
 	
 	@Test
-	public void testHasValue_ShouldReturnAMatcher_WhichSucceedsIfOptionalIsPresent_AndPassedMatcher_Succeeds() {
+	public void testHasValue_Matcher_ShouldReturnAMatcher_WhichSucceedsIfOptionalIsPresent_AndPassedMatcher_Succeeds() {
 		Optional<String> hello = Optional.of("hello");
 		assertThat(hello, hasValue(allOf(startsWith("h"), endsWith("o"))));
 	}
 	
 	@Test
-	public void testHasValue_ShouldReturnAMatcher_WhichFailsIfOptionalIsPresent_ButPassedMatcher_Fails() {
+	public void testHasValue_Matcher_ShouldReturnAMatcher_WhichFailsIfOptionalIsPresent_ButPassedMatcher_Fails() {
 		exception.expect(AssertionError.class);
 		exception.expectMessage("was <Present> and");
 		exception.expectMessage("was \"hello\"");

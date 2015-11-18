@@ -6,6 +6,8 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
+import static org.hamcrest.core.IsEqual.equalTo;
+
 /**
  * Provides matchers for JDK 8 {@link Optional}
  * 
@@ -76,6 +78,25 @@ public class OptionalMatcher {
 		protected void describeMismatchSafely(Optional<?> item, Description mismatchDescription) {
 			mismatchDescription.appendText("was <Present> with value " + item.get());
 		}
+	}
+
+	/**
+	 * Creates a matcher that matches when the examined {@code Optional}
+	 * contains a value that is logically equal to the {@code operand}, as
+	 * determined by calling the {@code equals} method on the value.
+	 * <pre>
+	 *     Optional&lt;String&gt; optionalInt = Optional.of("dummy value");
+	 *     assertThat(optionalInt, hasValue("dummy value"));
+	 * </pre>
+	 *
+	 * @param operand the object that any examined {@code Optional} value
+	 * should equal
+	 * @param <T> the class of the value.
+	 * @return  a matcher that matches when the examined {@code Optional}
+	 * contains a value that is logically equal to the {@code operand}.
+	 */
+	public static <T> Matcher<Optional<T>> hasValue(T operand) {
+		return new HasValue<>(equalTo(operand));
 	}
 
 	/**
