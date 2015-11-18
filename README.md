@@ -1,5 +1,5 @@
 # Hamcrest Optional
-[![Travis CI build](https://travis-ci.org/npathai/hamcrest-jdk8-extras.svg?branch=master)](https://travis-ci.org/npathai/hamcrest-jdk8-extras)   [![Coverage Status](https://coveralls.io/repos/npathai/hamcrest-jdk8-extras/badge.svg?branch=master&service=github)](https://coveralls.io/github/npathai/hamcrest-jdk8-extras?branch=master)
+[![Travis CI build](https://travis-ci.org/npathai/hamcrest-optional.svg?branch=master)](https://travis-ci.org/npathai/hamcrest-optional)   [![Coverage Status](https://coveralls.io/repos/npathai/hamcrest-optional/badge.svg?branch=master&service=github)](https://coveralls.io/github/npathai/hamcrest-optional?branch=master)
 
 An extension to [Java Hamcrest](https://github.com/hamcrest/JavaHamcrest) which provides matchers for *JDK 8* Optional
 
