@@ -32,3 +32,16 @@ assertThat(optionalRef, isEmpty());
 ```java
 Optional<String> optionalRef = someMethodReturningOptional();
 assertThat(optionalRef, isPresentAnd(startsWith("a"));
+```
+
+## Development Guide
+
+hamcrest-optional is build with [Maven](http://maven.apache.org/). If you want
+to contribute code than
+
+* Please write a test for your change.
+* Ensure that you don't break the build by running `mvn test`.
+* Fork the repo and create a pull request. (See [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/index.html))
+
+hamcrest-optional supports [Travis CI](https://travis-ci.org/) for continuous
+integration. Your pull request is automatically build by Travis CI.
