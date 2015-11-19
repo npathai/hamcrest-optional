@@ -9,7 +9,9 @@
 	<packaging>jar</packaging>
 
 	<name>Hamcrest Optional</name>
+	<description>A set of Hamcrest matchers for java.util.Optional.</description>
 	<url>https://github.com/npathai/hamcrest-optional/</url>
+	<inceptionYear>2015</inceptionYear>
 
 	<scm>
 		<connection>scm:git:git://github.com/npathai/hamcrest-optional.git</connection>
