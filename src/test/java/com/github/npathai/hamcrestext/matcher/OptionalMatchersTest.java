@@ -1,7 +1,6 @@
 package com.github.npathai.hamcrestext.matcher;
 
-import static com.github.npathai.hamcrestext.matcher.OptionalMatcher.isEmpty;
-import static com.github.npathai.hamcrestext.matcher.OptionalMatcher.*;
+import static com.github.npathai.hamcrestext.matcher.OptionalMatchers.*;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.startsWith;
@@ -13,7 +12,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class OptionalMatcherTest {
+public class OptionalMatchersTest {
 
 	private static final Object ANY_VALUE = "value";
 
