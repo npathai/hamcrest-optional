@@ -19,7 +19,7 @@ public class OptionalMatchersTest {
 	public void testIsPresent_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
 		Optional<Object> myOptionalRef = Optional.empty();
 		expectFailure(
-				"Expected: <Present>",
+				"Expected: is <Present>",
 				"     but: was <Empty>");
 		assertThat(myOptionalRef, isPresent());
 	}
@@ -42,8 +42,8 @@ public class OptionalMatchersTest {
 	public void testIsEmpty_ShouldReturnAMatcher_WhichFailsIfOptionalIsPresent() {
 		Optional<Object> myOptionalRef = Optional.of("dummy value");
 		expectFailure(
-				"Expected: <Empty>",
-				"     but: was <Present> with value dummy value");
+				"Expected: is <Empty>",
+				"     but: had value \"dummy value\"");
 		assertThat(myOptionalRef, isEmpty());
 	}
 
@@ -51,7 +51,7 @@ public class OptionalMatchersTest {
 	public void testHasValue_Object_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
 		Optional<String> optional = Optional.empty();
 		expectFailure(
-				"Expected: <Present> and \"dummy value\"",
+				"Expected: has value that is \"dummy value\"",
 				"     but: was <Empty>");
 		assertThat(optional, hasValue("dummy value"));
 	}
@@ -66,8 +66,8 @@ public class OptionalMatchersTest {
 	public void testHasValue_Object_ShouldReturnAMatcher_WhichFailsIfOptionalContainsValueNotEqualToOperand() {
 		Optional<String> optional = Optional.of("dummy value");
 		expectFailure(
-				"Expected: <Present> and \"another value\"",
-				"     but: was <Present> and was \"dummy value\"");
+				"Expected: has value that is \"another value\"",
+				"     but: value was \"dummy value\"");
 		assertThat(optional, hasValue("another value"));
 	}
 	
@@ -75,7 +75,7 @@ public class OptionalMatchersTest {
 	public void testHasValue_Matcher_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
 		Optional<String> hello = Optional.empty();
 		expectFailure(
-				"Expected: <Present> and a string starting with \"a\"",
+				"Expected: has value that is a string starting with \"a\"",
 				"     but: was <Empty>");
 		assertThat(hello, hasValue(startsWith("a")));
 	}
@@ -90,8 +90,8 @@ public class OptionalMatchersTest {
 	public void testHasValue_Matcher_ShouldReturnAMatcher_WhichFailsIfOptionalIsPresent_ButPassedMatcher_Fails() {
 		Optional<String> hello = Optional.of("hello");
 		expectFailure(
-				"Expected: <Present> and a string starting with \"a\"",
-				"     but: was <Present> and was \"hello\"");
+				"Expected: has value that is a string starting with \"a\"",
+				"     but: value was \"hello\"");
 		assertThat(hello, hasValue(startsWith("a")));
 	}
 

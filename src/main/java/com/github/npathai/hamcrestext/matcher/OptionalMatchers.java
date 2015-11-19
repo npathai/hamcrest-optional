@@ -45,7 +45,7 @@ public class OptionalMatchers {
 	private static class PresenceMatcher extends TypeSafeMatcher<Optional<?>> {
 		
 		public void describeTo(Description description) {
-			description.appendText("<Present>");
+			description.appendText("is <Present>");
 		}
 
 		@Override
@@ -77,7 +77,7 @@ public class OptionalMatchers {
 	private static class EmptyMatcher extends TypeSafeMatcher<Optional<?>> {
 
 		public void describeTo(Description description) {
-			description.appendText("<Empty>");
+			description.appendText("is <Empty>");
 		}
 
 		@Override
@@ -87,7 +87,8 @@ public class OptionalMatchers {
 		
 		@Override
 		protected void describeMismatchSafely(Optional<?> item, Description mismatchDescription) {
-			mismatchDescription.appendText("was <Present> with value " + item.get());
+			mismatchDescription.appendText("had value ");
+			mismatchDescription.appendValue(item.get());
 		}
 	}
 
@@ -128,7 +129,6 @@ public class OptionalMatchers {
 	}
 
 	private static class HasValue<T> extends TypeSafeMatcher<Optional<T>> {
-		private PresenceMatcher presenceMatcher = new PresenceMatcher();
 		private Matcher<? super T> matcher;
 		
 		public HasValue(Matcher<? super T> matcher) {
@@ -137,24 +137,22 @@ public class OptionalMatchers {
 		
 		@Override
 		public void describeTo(Description description) {
-			presenceMatcher.describeTo(description);
-			description.appendText(" and ");
+			description.appendText("has value that is ");
 			matcher.describeTo(description);
 		}
 
 		@Override
 		protected boolean matchesSafely(Optional<T> item) {
-			return presenceMatcher.matchesSafely(item) 
-					&& matcher.matches(item.get());
+			return item.isPresent() && matcher.matches(item.get());
 		}
 		
 		@Override
 		protected void describeMismatchSafely(Optional<T> item, Description mismatchDescription) {
-			if (!presenceMatcher.matchesSafely(item)) {
-				mismatchDescription.appendText("was <Empty>");
-			} else {
-				mismatchDescription.appendText("was <Present> and ");
+			if (item.isPresent()) {
+				mismatchDescription.appendText("value ");
 				matcher.describeMismatch(item.get(), mismatchDescription);
+			} else {
+				mismatchDescription.appendText("was <Empty>");
 			}
 		}
 	}
