@@ -14,7 +14,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
  * @author npathai
  *
  */
-public class OptionalMatcher {
+public class OptionalMatchers {
 
 	/**
 	 * Creates a matcher that matches when the examined {@code Optional}
@@ -149,6 +149,6 @@ public class OptionalMatcher {
 	}
 
 	//This is an utility class that must not be instantiated.
-	private OptionalMatcher() {
+	private OptionalMatchers() {
 	}
 }
