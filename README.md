@@ -37,7 +37,7 @@ assertThat(optionalRef, hasValue(startsWith("a"));
 ## Development Guide
 
 hamcrest-optional is build with [Maven](http://maven.apache.org/). If you want
-to contribute code than
+to contribute code then
 
 * Please write a test for your change.
 * Ensure that you don't break the build by running `mvn test`.
