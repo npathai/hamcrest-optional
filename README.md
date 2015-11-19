@@ -27,6 +27,13 @@ Optional<String> optionalRef = someMethodReturningOptional();
 assertThat(optionalRef, isEmpty());
 ```
 
+###`hasValue(Object operand)`
+
+```java
+Optional<String> optionalRef = someMethodReturningOptional();
+assertThat(optionalRef, hasValue("expected value");
+```
+
 ###`hasValue(Matcher<? super T> m)`
 
 ```java
