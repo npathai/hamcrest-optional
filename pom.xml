@@ -8,8 +8,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>hamcrestext</name>
-	<url>http://maven.apache.org</url>
+	<name>Hamcrest Optional</name>
+	<url>https://github.com/npathai/hamcrest-optional/</url>
 
 	<scm>
 		<connection>scm:git:git://github.com/npathai/hamcrest-optional.git</connection>
