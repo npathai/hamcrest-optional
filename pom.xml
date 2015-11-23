@@ -13,6 +13,20 @@
 	<url>https://github.com/npathai/hamcrest-optional/</url>
 	<inceptionYear>2015</inceptionYear>
 
+	<developers>
+		<developer>
+			<id>narendra.pathai@gmail.com</id>
+			<name>Narendra Pathai</name>
+			<email>narendra.pathai@gmail.com</email>
+		</developer>
+		<developer>
+			<id>mail@stefan-birkner.de</id>
+			<name>Stefan Birkner</name>
+			<email>mail@stefan-birkner.de</email>
+			<url>http://www.stefan-birkner.de</url>
+		</developer>
+	</developers>
+
 	<scm>
 		<connection>scm:git:git://github.com/npathai/hamcrest-optional.git</connection>
 		<developerConnection>scm:git:git@github.com:npathai/hamcrest-optional.git</developerConnection>
