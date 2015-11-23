@@ -1,4 +1,4 @@
-package com.github.npathai.hamcrestext.matcher;
+package com.github.npathai.hamcrestopt;
 
 import java.util.Optional;
 

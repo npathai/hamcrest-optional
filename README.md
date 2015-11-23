@@ -13,7 +13,7 @@ hamcrest-optional provides four matchers for `Optional`: `isEmpty()`,
 This matcher matches when the examined `Optional` contains no value.
 
 ```java
-import static com.github.npathai.hamcrestext.matcher.OptionalMatchers.isEmpty;
+import static com.github.npathai.hamcrestopt.OptionalMatchers.isEmpty;
 
 Optional<Object> optional = Optional.empty();
 assertThat(optional, isEmpty());
@@ -24,7 +24,7 @@ assertThat(optional, isEmpty());
 This matcher matches when the examined `Optional` contains a value.
 
 ```java
-import static com.github.npathai.hamcrestext.matcher.OptionalMatchers.isPresent;
+import static com.github.npathai.hamcrestopt.OptionalMatchers.isPresent;
 
 Optional<String> optional = Optional.of("dummy value");
 assertThat(optional, isPresent());
@@ -36,7 +36,7 @@ This matcher matches when the examined `Optional` contains a value that is
 logically equal to the specified object.
 
 ```java
-import static com.github.npathai.hamcrestext.matcher.OptionalMatchers.hasValue;
+import static com.github.npathai.hamcrestopt.OptionalMatchers.hasValue;
 
 Optional<String> optional = Optional.of("dummy value");
 assertThat(optional, hasValue("dummy value"));
@@ -48,7 +48,7 @@ This matcher matches when the examined `Optional` contains a value that
 satisfies the specified matcher.
 
 ```java
-import static com.github.npathai.hamcrestext.matcher.OptionalMatchers.hasValue;
+import static com.github.npathai.hamcrestopt.OptionalMatchers.hasValue;
 import static org.hamcrest.Matchers.startsWith;
 
 Optional<String> optional = Optional.of("dummy value");
