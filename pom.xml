@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -7,8 +8,16 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>hamcrestext</name>
-	<url>http://maven.apache.org</url>
+	<name>Hamcrest Optional</name>
+	<description>A set of Hamcrest matchers for java.util.Optional.</description>
+	<url>https://github.com/npathai/hamcrest-optional/</url>
+	<inceptionYear>2015</inceptionYear>
+
+	<scm>
+		<connection>scm:git:git://github.com/npathai/hamcrest-optional.git</connection>
+		<developerConnection>scm:git:git@github.com:npathai/hamcrest-optional.git</developerConnection>
+		<url>https://github.com/npathai/hamcrest-optional/</url>
+	</scm>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,10 +38,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<dependencyManagement>
-		<dependencies>
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 		<plugins>
@@ -69,10 +74,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<scm>
-		<url>https://github.com/npathai/hamcrest-jdk8-extras.git</url>
-		<developerConnection>Narendra Pathai</developerConnection>
-	</scm>
-
 </project>
