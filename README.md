@@ -61,7 +61,7 @@ hamcrest-optional is build with [Maven](http://maven.apache.org/). If you want
 to contribute code then
 
 * Please write a test for your change.
-* Ensure that you don't break the build by running `mvn test`.
+* Ensure that you don't break the build by running `mvn verify -Dgpg.skip`.
 * Fork the repo and create a pull request. (See [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/index.html))
 
 hamcrest-optional supports [Travis CI](https://travis-ci.org/) for continuous
