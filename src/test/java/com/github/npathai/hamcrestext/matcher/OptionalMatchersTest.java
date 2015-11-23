@@ -1,10 +1,9 @@
 package com.github.npathai.hamcrestext.matcher;
 
 import static com.github.npathai.hamcrestext.matcher.OptionalMatchers.*;
-import static org.hamcrest.CoreMatchers.allOf;
-import static org.hamcrest.CoreMatchers.endsWith;
-import static org.hamcrest.CoreMatchers.startsWith;
-import static org.junit.Assert.assertThat;
+import static java.lang.String.format;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Optional;
 
@@ -14,24 +13,20 @@ import org.junit.rules.ExpectedException;
 
 public class OptionalMatchersTest {
 
-	private static final Object ANY_VALUE = "value";
-
 	@Rule public ExpectedException exception = ExpectedException.none();
 	
 	@Test
 	public void testIsPresent_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
-		exception.expect(AssertionError.class);
-		exception.expectMessage("Expected: <Present>");
-		exception.expectMessage("was <Empty>");
-		
 		Optional<Object> myOptionalRef = Optional.empty();
-		
+		expectFailure(
+				"Expected: is <Present>",
+				"     but: was <Empty>");
 		assertThat(myOptionalRef, isPresent());
 	}
 	
 	@Test
 	public void testIsPresent_ShouldReturnAMatcher_WhichSucceedsIfOptionalIsPresent() {
-		Optional<Object> myOptionalRef = Optional.of(ANY_VALUE);
+		Optional<Object> myOptionalRef = Optional.of("dummy value");
 		
 		assertThat(myOptionalRef, isPresent());
 	}
@@ -45,21 +40,19 @@ public class OptionalMatchersTest {
 	
 	@Test
 	public void testIsEmpty_ShouldReturnAMatcher_WhichFailsIfOptionalIsPresent() {
-		exception.expect(AssertionError.class);
-		exception.expectMessage("Expected: <Empty>");
-		exception.expectMessage("was <Present> with value " + ANY_VALUE);
-		
-		Optional<Object> myOptionalRef = Optional.of(ANY_VALUE);
-		
-		assertThat("An optional with some value should not be empty", myOptionalRef, isEmpty());
+		Optional<Object> myOptionalRef = Optional.of("dummy value");
+		expectFailure(
+				"Expected: is <Empty>",
+				"     but: had value \"dummy value\"");
+		assertThat(myOptionalRef, isEmpty());
 	}
 
 	@Test
 	public void testHasValue_Object_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
-		exception.expect(AssertionError.class);
-		exception.expectMessage("was <Empty>");
-
 		Optional<String> optional = Optional.empty();
+		expectFailure(
+				"Expected: has value that is \"dummy value\"",
+				"     but: was <Empty>");
 		assertThat(optional, hasValue("dummy value"));
 	}
 
@@ -71,20 +64,19 @@ public class OptionalMatchersTest {
 
 	@Test
 	public void testHasValue_Object_ShouldReturnAMatcher_WhichFailsIfOptionalContainsValueNotEqualToOperand() {
-		exception.expect(AssertionError.class);
-		exception.expectMessage("was <Present> and");
-		exception.expectMessage("was \"dummy value\"");
-
 		Optional<String> optional = Optional.of("dummy value");
+		expectFailure(
+				"Expected: has value that is \"another value\"",
+				"     but: value was \"dummy value\"");
 		assertThat(optional, hasValue("another value"));
 	}
 	
 	@Test
 	public void testHasValue_Matcher_ShouldReturnAMatcher_WhichFailsIfOptionalIsEmpty() {
-		exception.expect(AssertionError.class);
-		exception.expectMessage("was <Empty>");
-		
 		Optional<String> hello = Optional.empty();
+		expectFailure(
+				"Expected: has value that is a string starting with \"a\"",
+				"     but: was <Empty>");
 		assertThat(hello, hasValue(startsWith("a")));
 	}
 	
@@ -96,11 +88,16 @@ public class OptionalMatchersTest {
 	
 	@Test
 	public void testHasValue_Matcher_ShouldReturnAMatcher_WhichFailsIfOptionalIsPresent_ButPassedMatcher_Fails() {
-		exception.expect(AssertionError.class);
-		exception.expectMessage("was <Present> and");
-		exception.expectMessage("was \"hello\"");
-		
 		Optional<String> hello = Optional.of("hello");
+		expectFailure(
+				"Expected: has value that is a string starting with \"a\"",
+				"     but: value was \"hello\"");
 		assertThat(hello, hasValue(startsWith("a")));
+	}
+
+	private void expectFailure(String firstLineOfMessage, String secondLineOfMessage) {
+		String expectedMessage = format("%n" + firstLineOfMessage + "%n" + secondLineOfMessage);
+		exception.expect(AssertionError.class);
+		exception.expectMessage(equalTo(expectedMessage));
 	}
 }
