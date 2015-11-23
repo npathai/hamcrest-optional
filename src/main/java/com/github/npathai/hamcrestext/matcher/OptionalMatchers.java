@@ -9,10 +9,21 @@ import org.hamcrest.TypeSafeMatcher;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 /**
- * Provides matchers for JDK 8 {@link Optional}
- * 
- * @author npathai
+ * Provides a set of Hamcrest matchers for {@code java.util.Optional}:
+ * <ul>
+ *     <li>{@link #isEmpty()} - matches when the examined {@code Optional}
+ *     contains no value.</li>
+ *     <li>{@link #isPresent()} - matches when the examined {@code Optional}
+ *     contains a value.</li>
+ *     <li>{@link #hasValue(Object)} - matches when the examined
+ *     {@code Optional} contains a value that is logically equal to the
+ *     {@code operand}.</li>
+ *     <li>{@link #hasValue(Matcher)} - matches when the examined
+ *     {@code Optional} contains a value that satisfies the specified matcher.
+ *     </li>
+ * </ul>
  *
+ * @author npathai
  */
 public class OptionalMatchers {
 
