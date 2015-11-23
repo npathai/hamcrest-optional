@@ -3,42 +3,56 @@
 
 An extension to [Java Hamcrest](https://github.com/hamcrest/JavaHamcrest) which provides matchers for *JDK 8* Optional
 
-It provides matchers such as:
+## Usage
 
- - `isPresent()` - Matches if optional is present
+hamcrest-optional provides four matchers for `Optional`: `isEmpty()`,
+`isPresent()`, `hasValue(Object)` and `hasValue(Matcher)`.
 
- - `isEmpty()` - Matches if optional is empty
+### isEmpty()
 
- - `hasValue(Matcher<T> m)` - Matches if optional contains a value that satisfies the specified matcher.
-
-##Usage
-###`isPresent()`
+This matcher matches when the examined `Optional` contains no value.
 
 ```java
-Optional<String> optionalRef = someMethodReturningOptional();
-assertThat(optionalRef, isPresent());
+import static com.github.npathai.hamcrestext.matcher.OptionalMatchers.isEmpty;
+
+Optional<Object> optional = Optional.empty();
+assertThat(optional, isEmpty());
 ```
 
+### isPresent()
 
-###`isEmpty()`
+This matcher matches when the examined `Optional` contains a value.
 
 ```java
-Optional<String> optionalRef = someMethodReturningOptional();
-assertThat(optionalRef, isEmpty());
+import static com.github.npathai.hamcrestext.matcher.OptionalMatchers.isPresent;
+
+Optional<String> optional = Optional.of("dummy value");
+assertThat(optional, isPresent());
 ```
 
-###`hasValue(Object operand)`
+### hasValue(Object)
+
+This matcher matches when the examined `Optional` contains a value that is
+logically equal to the specified object.
 
 ```java
-Optional<String> optionalRef = someMethodReturningOptional();
-assertThat(optionalRef, hasValue("expected value");
+import static com.github.npathai.hamcrestext.matcher.OptionalMatchers.hasValue;
+
+Optional<String> optional = Optional.of("dummy value");
+assertThat(optional, hasValue("dummy value"));
 ```
 
-###`hasValue(Matcher<? super T> m)`
+### hasValue(Matcher)
+
+This matcher matches when the examined `Optional` contains a value that
+satisfies the specified matcher.
 
 ```java
-Optional<String> optionalRef = someMethodReturningOptional();
-assertThat(optionalRef, hasValue(startsWith("a"));
+import static com.github.npathai.hamcrestext.matcher.OptionalMatchers.hasValue;
+import static org.hamcrest.Matchers.startsWith;
+
+Optional<String> optional = Optional.of("dummy value");
+assertThat(optional, hasValue(startsWith("dummy")));
 ```
 
 ## Development Guide
