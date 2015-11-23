@@ -66,3 +66,14 @@ to contribute code then
 
 hamcrest-optional supports [Travis CI](https://travis-ci.org/) for continuous
 integration. Your pull request is automatically build by Travis CI.
+
+## Release Guide
+
+* Select a new version according to the
+  [Semantic Versioning 2.0.0 Standard](http://semver.org/).
+* Set the new version in `pom.xml`.
+* Commit the modified `pom.xml`.
+* Push the commit: `git push origin master`
+* Run `mvn clean deploy` with JDK 8.
+* Add a tag for the release: `git tag hamcrest-optional-X.X.X`
+* Push the tag: `git push origin hamcrest-optional-X.X.X`
