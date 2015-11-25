@@ -1,6 +1,6 @@
-package com.github.npathai.hamcrestext.matcher;
+package com.github.npathai.hamcrestopt;
 
-import static com.github.npathai.hamcrestext.matcher.OptionalMatchers.*;
+import static com.github.npathai.hamcrestopt.OptionalMatchers.*;
 import static java.lang.String.format;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
