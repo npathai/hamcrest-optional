@@ -10,7 +10,7 @@
 
 	<groupId>com.github.npathai</groupId>
 	<artifactId>hamcrest-optional</artifactId>
-	<version>1.0</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Hamcrest Optional</name>
