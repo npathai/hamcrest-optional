@@ -32,7 +32,7 @@ public class OptionalMatchersTest {
 	}
 	
 	@Test
-	public void testIsEmpty_ShouldReturnAMatcher_WhichSucceedsIsOptionalIsEmpty() {
+	public void testIsEmpty_ShouldReturnAMatcher_WhichSucceedsIfOptionalIsEmpty() {
 		Optional<Object> myOptionalRef = Optional.empty();
 		
 		assertThat(myOptionalRef, isEmpty());
