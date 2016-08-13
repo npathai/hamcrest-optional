@@ -3,6 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<parent>
+		<groupId>com.github.stefanbirkner</groupId>
+		<artifactId>lib-parent</artifactId>
+		<version>8</version>
+	</parent>
+
 	<groupId>com.github.npathai</groupId>
 	<artifactId>hamcrest-optional</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -70,7 +76,6 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19</version>
 				<executions>
 					<execution>
 						<id>default-test</id>

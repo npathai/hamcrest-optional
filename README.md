@@ -61,8 +61,19 @@ hamcrest-optional is build with [Maven](http://maven.apache.org/). If you want
 to contribute code then
 
 * Please write a test for your change.
-* Ensure that you don't break the build by running `mvn test`.
+* Ensure that you don't break the build by running `mvn verify -Dgpg.skip`.
 * Fork the repo and create a pull request. (See [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/index.html))
 
 hamcrest-optional supports [Travis CI](https://travis-ci.org/) for continuous
 integration. Your pull request is automatically build by Travis CI.
+
+## Release Guide
+
+* Select a new version according to the
+  [Semantic Versioning 2.0.0 Standard](http://semver.org/).
+* Set the new version in `pom.xml`.
+* Commit the modified `pom.xml`.
+* Push the commit: `git push origin master`
+* Run `mvn clean deploy` with JDK 8.
+* Add a tag for the release: `git tag hamcrest-optional-X.X.X`
+* Push the tag: `git push origin hamcrest-optional-X.X.X`
