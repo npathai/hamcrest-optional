@@ -3,6 +3,19 @@
 
 An extension to [Java Hamcrest](https://github.com/hamcrest/JavaHamcrest) which provides matchers for `java.util.Optional`.
 
+## Maven Dependency
+```
+<dependencies>
+...
+<dependency>
+  <groupId>com.github.npathai</groupId>
+  <artifactId>hamcrest-optional</artifactId>
+  <version>1.0</version>
+</dependency>
+...
+</dependencies>
+```
+
 ## Usage
 
 hamcrest-optional provides four matchers for `Optional`: `isEmpty()`,
