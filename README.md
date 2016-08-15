@@ -1,6 +1,7 @@
 # Hamcrest Optional
 [![Travis CI build](https://travis-ci.org/npathai/hamcrest-optional.svg?branch=master)](https://travis-ci.org/npathai/hamcrest-optional)   [![Coverage Status](https://coveralls.io/repos/npathai/hamcrest-optional/badge.svg?branch=master&service=github)](https://coveralls.io/github/npathai/hamcrest-optional?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.npathai/hamcrest-optional/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.npathai/hamcrest-optional)
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
 An extension to [Java Hamcrest](https://github.com/hamcrest/JavaHamcrest) which provides matchers for `java.util.Optional`.
 
