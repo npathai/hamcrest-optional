@@ -15,15 +15,15 @@ import static org.hamcrest.core.IsEqual.equalTo;
  *     contains no value.</li>
  *     <li>{@link #isPresent()} - matches when the examined {@code Optional}
  *     contains a value.</li>
- *     <li>{@link #hasValue(Object)} - matches when the examined
+ *     <li>{@link #isPresentAndIs(Object)} - matches when the examined
  *     {@code Optional} contains a value that is logically equal to the
  *     {@code operand}.</li>
- *     <li>{@link #hasValue(Matcher)} - matches when the examined
+ *     <li>{@link #isPresentAnd(Matcher)} - matches when the examined
  *     {@code Optional} contains a value that satisfies the specified matcher.
  *     </li>
  * </ul>
  *
- * @author npathai
+ * @author npathai, sweiler
  */
 public class OptionalMatchers {
 
@@ -98,7 +98,7 @@ public class OptionalMatchers {
 	 * determined by calling the {@code equals} method on the value.
 	 * <pre>
 	 *     Optional&lt;String&gt; optionalInt = Optional.of("dummy value");
-	 *     assertThat(optionalInt, hasValue("dummy value"));
+	 *     assertThat(optionalInt, isPresentAndIs("dummy value"));
 	 * </pre>
 	 *
 	 * @param operand the object that any examined {@code Optional} value
@@ -107,7 +107,7 @@ public class OptionalMatchers {
 	 * @return  a matcher that matches when the examined {@code Optional}
 	 * contains a value that is logically equal to the {@code operand}.
 	 */
-	public static <T> Matcher<Optional<T>> hasValue(T operand) {
+	public static <T> Matcher<Optional<T>> isPresentAndIs(T operand) {
 		return new HasValue<>(equalTo(operand));
 	}
 
@@ -116,7 +116,7 @@ public class OptionalMatchers {
 	 * contains a value that satisfies the specified matcher.
 	 * <pre>
 	 *     Optional&lt;String&gt; optionalObject = Optional.of("dummy value");
-	 *     assertThat(optionalObject, hasValue(startsWith("dummy")));
+	 *     assertThat(optionalObject, isPresentAnd(startsWith("dummy")));
 	 * </pre>
 	 *
 	 * @param matcher a matcher for the value of the examined {@code Optional}.
@@ -124,7 +124,7 @@ public class OptionalMatchers {
 	 * @return  a matcher that matches when the examined {@code Optional}
 	 * contains a value that satisfies the specified matcher.
 	 */
-	public static <T> Matcher<Optional<T>> hasValue(Matcher<? super T> matcher) {
+	public static <T> Matcher<Optional<T>> isPresentAnd(Matcher<? super T> matcher) {
 		return new HasValue<>(matcher);
 	}
 
