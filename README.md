@@ -6,6 +6,26 @@
 An extension to [Java Hamcrest](https://github.com/hamcrest/JavaHamcrest) which provides matchers for `java.util.Optional`.
 
 ## Maven Dependency
+
+### Version 2.0.0 - Latest
+
+Changes
+
+ - Methods renamed from `hasValue` to `isPresentAndIs/isPresentAnd` for better fluency.
+```
+<dependencies>
+...
+<dependency>
+  <groupId>com.github.npathai</groupId>
+  <artifactId>hamcrest-optional</artifactId>
+  <version>2.0.0</version>
+</dependency>
+...
+</dependencies>
+```
+
+### Version 1.0
+
 ```
 <dependencies>
 ...
