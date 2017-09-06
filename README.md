@@ -21,7 +21,7 @@ An extension to [Java Hamcrest](https://github.com/hamcrest/JavaHamcrest) which 
 ## Usage
 
 hamcrest-optional provides four matchers for `Optional`: `isEmpty()`,
-`isPresent()`, `hasValue(Object)` and `hasValue(Matcher)`.
+`isPresent()`, `isPresentAndIs(Object)` and `isPresentAnd(Matcher)`.
 
 ### isEmpty()
 
@@ -45,29 +45,29 @@ Optional<String> optional = Optional.of("dummy value");
 assertThat(optional, isPresent());
 ```
 
-### hasValue(Object)
+### isPresentAndIs(Object)
 
 This matcher matches when the examined `Optional` contains a value that is
 logically equal to the specified object.
 
 ```java
-import static com.github.npathai.hamcrestopt.OptionalMatchers.hasValue;
+import static com.github.npathai.hamcrestopt.OptionalMatchers.isPresentAndIs;
 
 Optional<String> optional = Optional.of("dummy value");
-assertThat(optional, hasValue("dummy value"));
+assertThat(optional, isPresentAndIs("dummy value"));
 ```
 
-### hasValue(Matcher)
+### isPresentAnd(Matcher)
 
 This matcher matches when the examined `Optional` contains a value that
 satisfies the specified matcher.
 
 ```java
-import static com.github.npathai.hamcrestopt.OptionalMatchers.hasValue;
+import static com.github.npathai.hamcrestopt.OptionalMatchers.isPresentAnd;
 import static org.hamcrest.Matchers.startsWith;
 
 Optional<String> optional = Optional.of("dummy value");
-assertThat(optional, hasValue(startsWith("dummy")));
+assertThat(optional, isPresentAnd(startsWith("dummy")));
 ```
 
 ## Development Guide
